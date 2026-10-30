@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Emparejar: La Buena Convivencia</title>
+    <!-- Tailwind CSS desde CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Canvas Confetti Library para efectos de victoria -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Google Fonts: Poppins y FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #EC4899 100%);
+            min-height: 100vh;
+        }
+
+        /* Animaciones personalizadas */
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 255, 255, 0.4); }
+            50% { transform: scale(1.03); box-shadow: 0 0 25px rgba(255, 255, 255, 0.8); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .selected-card {
+            animation: pulseGlow 1.5s infinite ease-in-out;
+            border-color: #FBBF24 !important;
+            background-color: #FEF3C7 !important;
+            color: #92400E !important;
+        }
+
+        .matched-card {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+            background-color: #D1FAE5 !important;
+            border-color: #10B981 !important;
+            color: #065F46 !important;
+            transform: scale(0.97);
+        }
+
+        .wrong-card {
+            animation: shake 0.5s ease-in-out;
+            border-color: #EF4444 !important;
+            background-color: #FEE2E2 !important;
+            color: #991B1B !important;
+        }
+
+        .pop-animation {
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Ocultar scrollbar pero mantener scroll funcional si es necesario */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="flex flex-col justify-between p-3 sm:p-6 text-gray-800">
+
+    <!-- Envoltorio Principal -->
+    <div class="max-w-6xl mx-auto w-full flex-grow flex flex-col justify-center">
+
+        <!-- Encabezado de la Actividad -->
+        <header class="text-center mb-6 text-white pop-animation">
+            <div class="inline-flex items-center space-x-3 bg-white/20 backdrop-blur-md px-6 py-2 rounded-full border border-white/30 shadow-lg mb-3">
+                <i class="fa-solid fa-hands-holding-child text-yellow-300 text-2xl"></i>
+                <span class="font-semibold uppercase tracking-wider text-sm">Formación Ética y Ciudadana</span>
+            </div>
+            <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight drop-shadow-md">
+                Desafío: La Buena Convivencia
+            </h1>
+            <p class
